@@ -3,7 +3,7 @@ class Movie{
   final String title;
   final String overview;
   final String posterPath;
-  final String backdropDate;
+  final String backdropPath;
   final String releaseDate;
   final double voteAverage;
 
@@ -12,7 +12,7 @@ class Movie{
     required this.title, 
     required this.overview, 
     required this.posterPath, 
-    required this.backdropDate, 
+    required this.backdropPath, 
     required this.releaseDate, 
     required this.voteAverage
   });
