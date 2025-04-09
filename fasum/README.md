@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+- Setting pada pubspec.yaml  --> sdk:  ">=3.5.0 <4.0.0"
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
