@@ -5,6 +5,7 @@ import 'package:fasum/screens/add_post_screen.dart';
 import 'package:fasum/screens/detail_screen.dart';
 import 'package:fasum/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -67,9 +68,21 @@ class HomeScreen extends StatelessWidget {
               final description = data['description'];
               final createdAtStr = data['createdAt'];
               final fullName = data['fullName'] ?? 'Anonim';
+              final latitude = data['latitude'];
+              final longitude = data['longitude'];
+              final category = data['category'] ?? 'Lainnya';
 
               //parse ke DateTime
-              final createdAt = DateTime.parse(createdAtStr);
+              DateTime createdAt;
+              if (createdAtStr is Timestamp) {
+                createdAt = createdAtStr.toDate();
+              } else if (createdAtStr is String) {
+                createdAt = DateTime.parse(createdAtStr);
+              } else {
+                createdAt = DateTime.now();
+              }
+
+              final createdAtValue = data['createdAt'];
               String heroTag =
                   'fasum-image-${createdAt.millisecondsSinceEpoch}';
               return InkWell(
@@ -82,9 +95,9 @@ class HomeScreen extends StatelessWidget {
                           description: description,
                           createdAt: createdAt,
                           fullName: fullName,
-                          latitude: 0.0,
-                          longitude: 0.0,
-                          category: "Jalan Rusak",
+                          latitude: latitude,
+                          longitude: longitude,
+                          category: category,
                           heroTag: heroTag),
                     ),
                   );

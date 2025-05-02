@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fasum/screens/full_image_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -72,7 +73,15 @@ class _DetailScreenState extends State<DetailScreen> {
                   top: 12,
                   right: 12,
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              FullImageScreen(imageBase64: widget.imageBase64),
+                        ),
+                      );
+                    },
                     icon: const Icon(
                       Icons.fullscreen,
                       color: Colors.white,
@@ -148,7 +157,23 @@ class _DetailScreenState extends State<DetailScreen> {
                   Text(
                     widget.description,
                     style: const TextStyle(fontSize: 16),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "Lokasi",
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "${widget.latitude}, ${widget.longitude}",
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
                 ],
               ),
             )
