@@ -1,4 +1,4 @@
-import 'package:fasum/screens/home_screen.dart';
+import 'package:fasum/screens/home1_screen.dart';
 import 'package:fasum/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'firebase_options.dart';
 
 // Wajib dijalankan pada main dalam penggunaan firebase
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Tambahkan ini
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

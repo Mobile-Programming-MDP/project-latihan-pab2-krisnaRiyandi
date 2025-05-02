@@ -1,16 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AddPostScreen extends StatefulWidget {
   const AddPostScreen({super.key});
-
   @override
   State<AddPostScreen> createState() => _AddPostScreenState();
 }
@@ -23,7 +21,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
   bool _isUploading = false;
   double? _latitude;
   double? _longitude;
-
   Future<void> _pickImage(ImageSource source) async {
     final pickedFile = await _picker.pickImage(source: source);
     if (pickedFile != null) {
@@ -86,7 +83,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     if (uid == null) {
       setState(() => _isUploading = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('User not found')),
+        SnackBar(content: Text('User not found.')),
       );
       return;
     }
@@ -103,7 +100,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         'latitude': _latitude,
         'longitude': _longitude,
         'fullName': fullName,
-        'userId': uid, // Optional : jika ingin simpan uid juga
+        'userId': uid, // optional: jika ingin simpan UID juga
       });
       if (!mounted) return;
       Navigator.pop(context);
@@ -112,7 +109,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       if (!mounted) return;
       setState(() => _isUploading = false);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Failed to upload the post.')),
+        SnackBar(content: Text('Failed to upload the post.')),
       );
     }
   }
@@ -145,9 +142,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Add Post'),
-      ),
+      appBar: AppBar(title: Text('Add Post')),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
@@ -175,7 +170,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
               textCapitalization: TextCapitalization.sentences,
               maxLines: 3,
               decoration: InputDecoration(
-                hintText: 'Add a brief decription...',
+                hintText: 'Add a brief description...',
                 border: OutlineInputBorder(),
               ),
             ),
