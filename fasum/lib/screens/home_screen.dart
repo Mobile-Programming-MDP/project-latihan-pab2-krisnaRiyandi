@@ -139,7 +139,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData){
-            return const Center(child: CircularProgressIndicator())};
+            return const Center(child: CircularProgressIndicator());
+            };
 
           final posts = snapshot.data!.docs.where((doc){
             final data = doc.data();
@@ -149,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (posts.isEmpty){
             return const Center(
               child: Text("Tidak ada laporan untuk kategori ini!"),
-            )
+            );
           }
 
           return ListView.builder(
@@ -177,14 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final createdAtValue = data['createdAt'];
               String heroTag =
                   'fasum-image-${createdAt.millisecondsSinceEpoch}';
-              TextButton(
-                onPressed: () {
-                    Navigator.of(
-                      context,
-                    ).push(MaterialPageRoute(builder: (context) => DetailScreen(imageBase64: imageBase64, description: description, createdAt: createdAt, fullName: fullName, latitude: latitude, longitude: longitude, category: category, heroTag: heroTag)));
-                  },
-                  child: const Icon(Icons.add),
-              );
+
               return InkWell(
                 onTap: () {
                   Navigator.push(
