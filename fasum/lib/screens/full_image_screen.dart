@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 
 class FullImageScreen extends StatelessWidget {
   final String imageBase64;
-  const FullImageScreen({super.key, required this.imageBase64});
+  const FullImageScreen({
+    super.key,
+    required this.imageBase64,
+  });
 
   @override
   Widget build(BuildContext context) {

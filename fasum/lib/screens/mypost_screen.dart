@@ -4,20 +4,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fasum/screens/add_post_screen.dart';
 import 'package:fasum/screens/detail_screen.dart';
 import 'package:fasum/screens/edit_post_screen.dart';
-import 'package:fasum/screens/mypost_screen.dart';
 import 'package:fasum/screens/sign_in_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MyPostScreen extends StatefulWidget {
+  const MyPostScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MyPostScreen> createState() => _MyPostScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MyPostScreenState extends State<MyPostScreen> {
   String? selectedCategory;
   //ambil dari add_post_screen
   List<String> categories = [
@@ -353,7 +352,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final category = data['category'] ?? 'Lainnya';
               //untuk menampilkan post berdasarkan user yang login
               // final cu = FirebaseAuth.instance.currentUser;
-              // return cu?.uid == data['userId'] && selectedCategory == null || selectedCategory == category; 
+              // return cu?.uid == data['userId']; 
               return selectedCategory == null || selectedCategory == category;
             }).toList();
 
@@ -633,15 +632,6 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
             child: const Icon(Icons.add),
-          ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const MyPostScreen()),
-              );
-            },
-            child: const Icon(Icons.library_music),
           ),
         ],
       ),
